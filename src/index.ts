@@ -1,8 +1,14 @@
 import { Sorter } from './Sorter';
 import { NumbersCollection } from './NumbersCollection';
 import { CharactersCollection } from './CharactersCollection';
+import { LinkedList } from './LinkedList';
 
-const charactersCollection = new CharactersCollection('ЛОТ лытдта');
-const sorter = new Sorter(charactersCollection);
+const linkedList = new LinkedList();
+linkedList.add(1);
+linkedList.add(2);
+linkedList.add(-3);
+linkedList.add(-10);
+
+const sorter = new Sorter(linkedList);
 sorter.sort();
-console.log(charactersCollection.data);
+linkedList.print();

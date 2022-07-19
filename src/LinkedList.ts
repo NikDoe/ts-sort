@@ -42,12 +42,9 @@ export class LinkedList implements Sortable {
 	at(index: number): Node {
 		if (!this.head) throw new Error('Index out of bounds');
 
-		let counter = 0;
 		let node: Node | null = this.head;
 		while (node) {
-			if (counter === index) return node;
-
-			counter++;
+			if (!index--) return node;
 			node = node.next;
 		}
 
@@ -55,7 +52,8 @@ export class LinkedList implements Sortable {
 	}
 
 	compare(leftIndex: number, rightIndex: number): boolean {
-		if (!this.head) throw new Error('Linked list es empty');
+		if (!this.head) throw new Error('Linked list is empty');
+		if (this.at(leftIndex).next === null) return false;
 		return this.at(leftIndex).data > this.at(rightIndex).data;
 	}
 
@@ -66,5 +64,15 @@ export class LinkedList implements Sortable {
 		const temp = leftNode.data;
 		leftNode.data = rightNode.data;
 		rightNode.data = temp;
+	}
+
+	print(): void {
+		if (!this.head) return;
+
+		let node: Node | null = this.head;
+		while (node) {
+			console.log(node.data);
+			node = node.next;
+		}
 	}
 }
