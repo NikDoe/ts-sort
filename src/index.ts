@@ -1,5 +1,5 @@
 class Sorter {
-	constructor(public collection: number[]) {}
+	constructor(public collection: number[] | string) {}
 
 	sort(): void {
 		const { length } = this.collection;
@@ -9,13 +9,17 @@ class Sorter {
 			isSwapped = false;
 
 			for (let j = 0; j < length; j++) {
-				if (this.collection[j] > this.collection[j + 1]) {
-					[this.collection[j], this.collection[j + 1]] = [
-						this.collection[j + 1],
-						this.collection[j],
-					];
-					isSwapped = true;
+				if (this.collection instanceof Array) {
+					if (this.collection[j] > this.collection[j + 1]) {
+						[this.collection[j], this.collection[j + 1]] = [
+							this.collection[j + 1],
+							this.collection[j],
+						];
+						isSwapped = true;
+					}
 				}
+
+				// if(typeof this.collection === 'string') {//string stuff}
 			}
 
 			if (!isSwapped) break;
